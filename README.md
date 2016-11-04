@@ -29,7 +29,8 @@ $ bower install
 > 配置参数(conf/app.conf)
 
 ``` bash
-$ bee run
+$ go build -o snail
+$ ./snail
 ```
 
 ## MIT License
