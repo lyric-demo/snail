@@ -1,0 +1,20 @@
+{
+  "name": "snail",
+  "authors": [
+    "lyric <tiannianshou@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#^0.97.6",
+    "material-design-icons": "^2.2.3",
+    "json2": "*"
+  }
+}

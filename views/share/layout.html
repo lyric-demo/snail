@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>文件下载服务</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/libs/material-design-icons/iconfont/material-icons.css">
+    <link rel="stylesheet" href="/libs/Materialize/dist/css/materialize.min.css"> {{.Styles}}
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav role="navigation">
+            <div class="nav-wrapper container">
+                <a href="/" class="brand-logo left">文件下载服务</a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        {{.LayoutContent}}
+    </div>
+    <script src="/libs/json2/json2.js"></script>
+    <script src="/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/libs/Materialize/dist/js/materialize.min.js"></script> {{.Scripts}}
+</body>
+
+</html>

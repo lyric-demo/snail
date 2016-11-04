@@ -1,0 +1,37 @@
+<div class="section">
+    <div class="row">
+        <form class="col s12" action="/download" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_media</i>
+                    <input id="FileLink" name="FileLink" type="text" class="validate">
+                    <label for="FileLink">下载链接</label>
+                </div>
+            </div>
+             <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">input</i>
+                    <input id="FileName" name="FileName" type="text">
+                    <label for="FileName">文件名(可为空)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <i class="material-icons prefix">loyalty</i>
+                    <input id="Captcha" name="Captcha" type="text" class="validate">
+                    <label for="Captcha">验证码</label>
+                </div>
+                <div class="col s4">
+                    <input type="hidden" name="CaptchaID" value="{{.CaptchaID}}" />
+                    <img id="CaptchaImage" src="/captcha/{{.CaptchaID}}.png" title="验证码" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <button class="btn waves-effect waves-light" type="submit" style="width:40%">开始下载
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

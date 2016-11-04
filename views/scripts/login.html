@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    function onCaptchaImageClick(e){
+        var src = $('#CaptchaImage').attr('src');
+        $('#CaptchaImage').attr('src',src+"?reload="+ (new Date()).getTime());
+    }
+
+    $(document).ready(function() {
+        $('#CaptchaImage').on('click', onCaptchaImageClick);
+    });
+</script>
