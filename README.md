@@ -3,6 +3,12 @@
 
 ![screenshot](https://raw.githubusercontent.com/LyricTian/snail/master/static/img/screenshot.png)
 
+## 安装bee工具
+
+``` bash
+$ go get -u github.com/beego/bee
+```
+
 ## 获取
 
 ``` bash
@@ -29,8 +35,7 @@ $ bower install
 > 配置参数(conf/app.conf)
 
 ``` bash
-$ go build -o snail
-$ ./snail
+$ bee run
 ```
 
 ## MIT License
