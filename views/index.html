@@ -1,37 +1,80 @@
 <div class="section">
     <div class="row">
-        <form class="col s12" action="/download" method="POST">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">perm_media</i>
-                    <input id="FileLink" name="FileLink" type="text" class="validate">
-                    <label for="FileLink">下载链接</label>
+        <div class="col s12 card-panel">
+            <ul class="tabs tabs-fixed-width" style="overflow-x:hidden;">
+                <li class="tab col s6"><a href="#download">文件下载</a></li>
+                <li class="tab col s6"><a href="#suggest">优化建议</a></li>
+            </ul>
+        </div>
+        <div id="download" class="col s12">
+            <form class="col s12" action="/download" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">perm_media</i>
+                        <input id="FileLink" name="FileLink" type="text" class="validate">
+                        <label for="FileLink">下载链接(文件大小限制为500M)</label>
+                    </div>
                 </div>
-            </div>
-             <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">input</i>
-                    <input id="FileName" name="FileName" type="text">
-                    <label for="FileName">文件名(可为空)</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">input</i>
+                        <input id="FileName" name="FileName" type="text">
+                        <label for="FileName">文件名(不填写则使用默认的文件名)</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s8">
-                    <i class="material-icons prefix">loyalty</i>
-                    <input id="Captcha" name="Captcha" type="text" class="validate">
-                    <label for="Captcha">验证码</label>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">loyalty</i>
+                        <input id="DownloadCaptcha" name="DownloadCaptcha" type="text" class="validate">
+                        <label for="DownloadCaptcha">验证码</label>
+                    </div>
+                    <div class="col s4">
+                        <input type="hidden" name="DownloadCaptchaID" value="{{.CaptchaID}}" />
+                        <img id="DownloadCaptchaImage" src="/captcha/{{.CaptchaID}}.png" title="验证码" />
+                    </div>
                 </div>
-                <div class="col s4">
-                    <input type="hidden" name="CaptchaID" value="{{.CaptchaID}}" />
-                    <img id="CaptchaImage" src="/captcha/{{.CaptchaID}}.png" title="验证码" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 center">
-                    <button class="btn waves-effect waves-light" type="submit" style="width:40%">开始下载
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <button class="btn waves-effect green darken-2" type="submit" style="width:50%">开始下载
                     </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div id="suggest" class="col s12">
+            <form class="col s12" action="/suggest" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="Email" name="Email" type="email" class="validate">
+                        <label for="Email">您的邮箱</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">comment</i>
+                        <textarea id="Comment" name="Comment" class="materialize-textarea" class="validate"></textarea>
+                        <label for="Comment">您的建议</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">loyalty</i>
+                        <input id="SuggestCaptcha" name="SuggestCaptcha" type="text" class="validate">
+                        <label for="SuggestCaptcha">验证码</label>
+                    </div>
+                    <div class="col s4">
+                        <input type="hidden" name="SuggestCaptchaID" value="{{.CaptchaID}}" />
+                        <img id="SuggestCaptchaImage" src="/captcha/{{.CaptchaID}}.png" title="验证码" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <button class="btn waves-effect green darken-2" type="submit" style="width:50%">提 交
+                    </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

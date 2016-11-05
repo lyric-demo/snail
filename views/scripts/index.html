@@ -1,0 +1,37 @@
+<script type="text/javascript">
+
+    function loadCaptcha(id){
+        var src = $('#'+id).attr('src');
+        $('#'+id).attr('src',src+"?reload="+ (new Date()).getTime());
+    }
+
+    function onSuggestCaptchaImageClick(e){
+        loadCaptcha('SuggestCaptchaImage')
+    }
+
+     function onDownloadCaptchaImageClick(e){
+        loadCaptcha('DownloadCaptchaImage')
+    }
+
+    function onTabsOnShow(tab){
+        if(tab.length==0){
+            return
+        }
+        switch(tab[0].id){
+            case 'download':
+             loadCaptcha('DownloadCaptchaImage')
+                break;
+            case 'suggest':
+             loadCaptcha('SuggestCaptchaImage')
+               break;
+        }
+    }
+
+    $(document).ready(function() {
+        $('ul.tabs').tabs({
+            onShow:onTabsOnShow
+        });
+        $('#DownloadCaptchaImage').on('click', onDownloadCaptchaImageClick);
+        $('#SuggestCaptchaImage').on('click', onSuggestCaptchaImageClick);
+    });
+</script>

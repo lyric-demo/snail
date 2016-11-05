@@ -7,4 +7,6 @@ import (
 
 func init() {
 	beego.Include(new(controllers.MainController))
+	beego.Include(new(controllers.DownloadController))
+	beego.Include(new(controllers.SuggestController))
 }

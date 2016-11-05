@@ -1,13 +1,6 @@
-# Snail
-> 文件下载服务
+# 蜗牛下载
 
 ![screenshot](https://raw.githubusercontent.com/LyricTian/snail/master/static/img/screenshot.png)
-
-## 安装bee工具
-
-``` bash
-$ go get -u github.com/beego/bee
-```
 
 ## 获取
 
@@ -15,26 +8,25 @@ $ go get -u github.com/beego/bee
 $ go get -u github.com/LyricTian/snail
 ```
 
-## 安装并运行
+## 依赖工具
 
+### `bee`工具
 ``` bash
-$ cd $GOPATH/src/github.com/LyricTian/snail
+$ go get -u github.com/beego/bee
 ```
 
-### 安装js依赖
-
-> 需要先安装[nodejs](https://nodejs.org)
+### `bower`工具
 
 ``` bash
 $ npm install -g bower
-$ bower install
 ```
 
-## 运行
-
+## 安装依赖并运行
 > 配置参数(conf/app.conf)
 
 ``` bash
+$ cd $GOPATH/src/github.com/LyricTian/snail
+$ bower install
 $ bee run
 ```
 

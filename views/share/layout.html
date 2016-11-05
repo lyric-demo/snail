@@ -3,23 +3,50 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>文件下载服务</title>
+    <title>蜗牛下载</title>
+    <meta name="description" content="一个开放的国外文件下载服务" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
     <link rel="stylesheet" href="/libs/material-design-icons/iconfont/material-icons.css">
     <link rel="stylesheet" href="/libs/Materialize/dist/css/materialize.min.css"> {{.Styles}}
+    <link rel="stylesheet" href="/static/css/style.css"> {{.Styles}}
 </head>
 
 <body>
-    <div class="navbar-fixed">
-        <nav role="navigation">
-            <div class="nav-wrapper container">
-                <a href="/" class="brand-logo left">文件下载服务</a>
+    <header>
+        <div class="navbar-fixed">
+            <nav role="navigation">
+                <div class="nav-wrapper container">
+                    <a href="/" class="brand-logo left"><i class="material-icons">cloud_download</i>蜗牛下载</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            {{.LayoutContent}}
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m8">
+                    <h5 class="white-text center-align">
+                        一个开放的、免费的国外文件下载服务，目的在于为程序员朋友提供更快的下载速度。如果您支持作者，可以请作者喝杯咖啡。谢谢！
+                    </h5>
+                </div>
+                <div class="col s12 m4 center-align">
+                    <img width="110" src="/static/img/alipay.jpg">
+                </div>
             </div>
-        </nav>
-    </div>
-    <div class="container">
-        {{.LayoutContent}}
-    </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2016 Lyric
+                <a class="grey-text text-lighten-4 right" href="https://github.com/LyricTian/snail">github</a>
+            </div>
+        </div>
+    </footer>
     <script src="/libs/json2/json2.js"></script>
     <script src="/libs/jquery/dist/jquery.min.js"></script>
     <script src="/libs/Materialize/dist/js/materialize.min.js"></script> {{.Scripts}}
