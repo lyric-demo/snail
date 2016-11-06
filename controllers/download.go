@@ -59,11 +59,7 @@ func (dc *DownloadController) Post() {
 		return
 	}
 
-	// 文件名
-	filename := reqData.FileName
-	if filename = filepath.Base(u.String()); filename == "" {
-		filename = dc.getRespFileName(resp)
-	}
+	filename := dc.getFileName(reqData.FileName, u.String(), resp)
 
 	dc.addHistory(filename, reqData.FileLink)
 
@@ -132,19 +128,23 @@ func (dc *DownloadController) doRequest(u *url.URL) (resp *http.Response, err er
 	return
 }
 
-// 获取响应的文件名
-func (dc *DownloadController) getRespFileName(resp *http.Response) (filename string) {
+// 获取下载文件名
+func (dc *DownloadController) getFileName(rfilename, rurl string, resp *http.Response) (filename string) {
+	if rfilename != "" {
+		filename = rfilename
+		return
+	}
 	if hdr := resp.Header.Get("Content-Disposition"); hdr != "" {
 		mt, params, err := mime.ParseMediaType(hdr)
 		if err == nil && mt == "attachment" {
 			if name := params["filename"]; name != "" {
 				filename = name
+				return
 			}
 		}
 	}
-	if filename == "" {
-		filename = uuid.NewV4().String()
-	}
+	filename = filepath.Base(rurl)
+
 	return
 }
 
