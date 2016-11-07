@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/LyricTian/snail/models"
+	"github.com/LyricTian/snail/utils/captcha"
 	"github.com/astaxie/beego"
-	"github.com/dchest/captcha"
 	"github.com/satori/go.uuid"
 	"golang.org/x/net/http2"
 )

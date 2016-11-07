@@ -1,8 +1,8 @@
 package controllers
 
 import (
+	"github.com/LyricTian/snail/utils/captcha"
 	"github.com/astaxie/beego"
-	"github.com/dchest/captcha"
 )
 
 // MainController 入口控制器
@@ -13,7 +13,7 @@ type MainController struct {
 // Get /
 // @router / [get]
 func (mc *MainController) Get() {
-	mc.Data["CaptchaID"] = captcha.NewLen(4)
+	mc.Data["CaptchaID"] = captcha.New()
 	mc.LayoutSections = map[string]string{
 		"Scripts": "scripts/index.html",
 	}
