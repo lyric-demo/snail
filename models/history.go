@@ -12,6 +12,8 @@ type History struct {
 	AccessIP   string // 访问IP
 	FileLink   string // 下载链接
 	FileName   string // 文件名
+	FileSize   int    // 文件大小
+	FileType   int    // 文件类型（0：普通文件，1：视频文件）
 	CreateTime string // 创建时间
 }
 
