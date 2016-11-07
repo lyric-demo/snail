@@ -54,13 +54,8 @@ func (dc *DownloadController) Post() {
 		dc.Error500("下载文件错误")
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		dc.Error500("请求对方服务器异常：", resp.Status)
-		return
-	}
 
 	filename := dc.getFileName(reqData.FileName, u.String(), resp)
-
 	dc.addHistory(filename, reqData.FileLink)
 
 	output := dc.Ctx.Output
@@ -71,6 +66,7 @@ func (dc *DownloadController) Post() {
 		}
 		output.Header("Content-Length", strconv.Itoa(int(l)))
 	}
+
 	contentType := "application/octet-stream"
 	if ct := resp.Header.Get("Content-Type"); ct != "" {
 		contentType = ct
@@ -119,9 +115,6 @@ func (dc *DownloadController) doRequest(u *url.URL) (resp *http.Response, err er
 
 	client := &http.Client{
 		Transport: tr,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return http.ErrUseLastResponse
-		},
 	}
 
 	resp, err = client.Do(req)
