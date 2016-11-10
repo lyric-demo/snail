@@ -20,15 +20,15 @@ type SuggestController struct {
 // @router /suggest [post]
 func (sc *SuggestController) Post() {
 	var reqData struct {
-		Email            string `valid:"Required"`
-		Comment          string `valid:"Required"`
-		SuggestCaptchaID string `valid:"Required"`
-		SuggestCaptcha   string `valid:"Required"`
+		Email      string `valid:"Required"`
+		Comment    string `valid:"Required"`
+		SCaptchaID string `valid:"Required"`
+		SCaptcha   string `valid:"Required"`
 	}
 	if err := sc.BindVForm(&reqData); err != nil {
 		sc.Error400(err.Error())
 	}
-	if !captcha.VerifyString(reqData.SuggestCaptchaID, reqData.SuggestCaptcha) {
+	if !captcha.VerifyString(reqData.SCaptchaID, reqData.SCaptcha) {
 		sc.Error400("无效的验证码")
 	}
 	suggest := &models.Suggest{

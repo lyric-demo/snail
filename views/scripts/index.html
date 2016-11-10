@@ -5,12 +5,16 @@
         $('#'+id).attr('src',src+"?reload="+ (new Date()).getTime());
     }
 
-    function onSuggestCaptchaImageClick(e){
-        loadCaptcha('SuggestCaptchaImage')
+    function onSCaptchaImageClick(e){
+        loadCaptcha('SCaptchaImage')
     }
 
-     function onDownloadCaptchaImageClick(e){
-        loadCaptcha('DownloadCaptchaImage')
+    function onYCaptchaImageClick(e){
+        loadCaptcha('YCaptchaImage')
+    }
+
+    function onFCaptchaImageClick(e){
+        loadCaptcha('FCaptchaImage')
     }
 
     function onTabsOnShow(tab){
@@ -18,11 +22,14 @@
             return
         }
         switch(tab[0].id){
-            case 'download':
-             loadCaptcha('DownloadCaptchaImage')
+            case 'file':
+             loadCaptcha('FCaptchaImage')
+                break;
+            case 'youtube':
+             loadCaptcha('YCaptchaImage')
                 break;
             case 'suggest':
-             loadCaptcha('SuggestCaptchaImage')
+             loadCaptcha('SCaptchaImage')
                break;
         }
     }
@@ -31,7 +38,8 @@
         $('ul.tabs').tabs({
             onShow:onTabsOnShow
         });
-        $('#DownloadCaptchaImage').on('click', onDownloadCaptchaImageClick);
-        $('#SuggestCaptchaImage').on('click', onSuggestCaptchaImageClick);
+        $('#FCaptchaImage').on('click', onFCaptchaImageClick);
+        $('#YCaptchaImage').on('click', onYCaptchaImageClick);
+        $('#SCaptchaImage').on('click', onSCaptchaImageClick);
     });
 </script>

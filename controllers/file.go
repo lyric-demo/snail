@@ -6,8 +6,8 @@ import (
 	"net/url"
 	"path/filepath"
 
+	"github.com/LyricTian/snail/utils/captcha"
 	"github.com/astaxie/beego"
-	"github.com/dchest/captcha"
 )
 
 // FileController 文件下载控制器
@@ -19,15 +19,15 @@ type FileController struct {
 // @router /download/file [post]
 func (fc *FileController) Post() {
 	var reqData struct {
-		FileLink          string `valid:"Required"`
-		FileName          string
-		DownloadCaptchaID string `valid:"Required"`
-		DownloadCaptcha   string `valid:"Required"`
+		FileLink   string `valid:"Required"`
+		FileName   string
+		FCaptchaID string `valid:"Required"`
+		FCaptcha   string `valid:"Required"`
 	}
 	if err := fc.BindVForm(&reqData); err != nil {
 		fc.Error400(err.Error())
 	}
-	if !captcha.VerifyString(reqData.DownloadCaptchaID, reqData.DownloadCaptcha) {
+	if !captcha.VerifyString(reqData.FCaptchaID, reqData.FCaptcha) {
 		fc.Error400("无效的验证码")
 	}
 
@@ -43,21 +43,21 @@ func (fc *FileController) Post() {
 		beego.Error("下载文件错误:", err.Error())
 		fc.Error500("下载文件错误")
 	}
-	defer resp.Body.Close()
 
 	fileSize := resp.ContentLength
+	fileSizeLimit := beego.AppConfig.DefaultInt64("FileSizeLimit", 512) * 1024 * 1024
+	fileLink := u.String()
+	fileName := fc.fileName(reqData.FileName, fileLink, resp)
+
+	fc.AddHistory(0, int(fileSize), fileName, fileLink)
+
 	if fileSize > 0 {
-		sizeLimit := beego.AppConfig.DefaultInt64("FileSizeLimit", 512)
-		if fileSize > sizeLimit*1024*1024 {
+		if fileSize > fileSizeLimit {
 			fc.Error400("文件大小超出限制")
 		}
 	}
 
-	fileLink := u.String()
-	fileName := fc.fileName(reqData.FileName, fileLink, resp)
-	fc.AddHistory(0, int(fileSize), fileName, fileLink)
-
-	fc.DoResponse(fileName, resp, nil)
+	fc.DoResponse(fileName, fileSizeLimit, resp, nil)
 }
 
 // 获取下载文件名

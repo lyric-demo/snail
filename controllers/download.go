@@ -60,7 +60,9 @@ func (dc *DownloadController) DoRequest(u *url.URL) (resp *http.Response, err er
 }
 
 // DoResponse 响应文件数据
-func (dc *DownloadController) DoResponse(filename string, resp *http.Response, header http.Header) {
+func (dc *DownloadController) DoResponse(fileName string, fileLimit int64, resp *http.Response, header http.Header) {
+	defer resp.Body.Close()
+
 	output := dc.Ctx.Output
 	if cl := resp.ContentLength; cl > 0 {
 		output.Header("Content-Length", strconv.Itoa(int(cl)))
@@ -70,7 +72,8 @@ func (dc *DownloadController) DoResponse(filename string, resp *http.Response, h
 		contentType = ct
 	}
 	output.Header("Content-Type", contentType)
-	output.Header("Content-Disposition", "attachment; filename="+url.QueryEscape(filename))
+	fileName = url.QueryEscape(fileName)
+	output.Header("Content-Disposition", fmt.Sprintf("attachment; filename=%s;filename*=utf-8''%s", fileName, fileName))
 	output.Header("Content-Description", "File Transfer")
 	output.Header("Content-Transfer-Encoding", "binary")
 	output.Header("Expires", "0")
@@ -81,7 +84,14 @@ func (dc *DownloadController) DoResponse(filename string, resp *http.Response, h
 			output.Header(key, header.Get(key))
 		}
 	}
-	io.Copy(dc.Ctx.ResponseWriter, resp.Body)
+
+	reader := &io.LimitedReader{
+		R: resp.Body,
+	}
+	if fileLimit > 0 {
+		reader.N = fileLimit
+	}
+	io.Copy(dc.Ctx.ResponseWriter, reader)
 	dc.StopRun()
 }
 
