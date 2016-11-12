@@ -24,6 +24,7 @@ _testmain.go
 *.test
 *.prof
 *.DS_Store
+*.swp
 /snail
 /routers/commentsRouter_controllers.go
 *.tmp

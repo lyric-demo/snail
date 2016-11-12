@@ -1,4 +1,5 @@
 # 蜗牛下载
+> 支持文件下载，youtube视频下载
 
 ![screenshot](https://raw.githubusercontent.com/LyricTian/snail/master/static/img/screenshot.png)
 
