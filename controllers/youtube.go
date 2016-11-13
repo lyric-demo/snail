@@ -74,7 +74,7 @@ func (yc *YoutubeController) Post() {
 	fileSizeLimit := beego.AppConfig.DefaultInt64("YoutubeLimit", 512) * 1024 * 1024
 
 	// 增加文件下载历史
-	yc.AddHistory(1, int(fileSize), fileName, vu.String())
+	yc.AddHistory(1, int(fileSize), fileName, reqData.YFileLink)
 
 	if fileSize > 0 {
 		if fileSize > fileSizeLimit {
