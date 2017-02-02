@@ -14,6 +14,8 @@ type MainController struct {
 // @router / [get]
 func (mc *MainController) Get() {
 	mc.Data["CaptchaID"] = captcha.New()
+	mc.Data["FileSizeLimit"] = beego.AppConfig.DefaultInt("FileSizeLimit", 0)
+	mc.Data["YoutubeLimit"] = beego.AppConfig.DefaultInt("YoutubeLimit", 0)
 	mc.LayoutSections = map[string]string{
 		"Scripts": "scripts/index.html",
 	}

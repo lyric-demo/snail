@@ -12,7 +12,7 @@
 					<div class="input-field col s12">
 						<i class="material-icons prefix">perm_media</i>
 						<input id="FileLink" name="FileLink" type="text" class="validate">
-						<label for="FileLink">下载链接(文件大小限制为256M)</label>
+						<label for="FileLink">下载链接(文件大小限制为{{.FileSizeLimit}}M)</label>
 					</div>
 				</div>
 				<div class="row">
@@ -47,7 +47,7 @@
 					<div class="input-field col s12">
 						<i class="material-icons prefix">perm_media</i>
 						<input id="YFileLink" name="YFileLink" type="text" class="validate">
-						<label for="YFileLink">下载链接(文件大小限制为128M)</label>
+						<label for="YFileLink">下载链接(视频大小限制为{{.YoutubeLimit}}M)</label>
 					</div>
 				</div>
 				<div class="row">
