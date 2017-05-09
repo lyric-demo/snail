@@ -6,11 +6,18 @@
 
 ![screenshot](https://raw.githubusercontent.com/LyricTian/snail/master/static/img/screenshot.png)
 
+## 依赖工具
+
+``` bash
+$ npm install -g bower
+```
+
 ## 获取并运行
 
 ``` bash
 $ go get -u github.com/LyricTian/snail
 $ cd github.com/LyricTian/snail
+$ bower install
 $ go build -o snail
 $ ./snail
 ```
